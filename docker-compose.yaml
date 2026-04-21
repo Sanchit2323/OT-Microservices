@@ -6,13 +6,7 @@ services:
     build:
       context: elasticsearch/
     volumes:
-      - type: bind
-        source: ./elasticsearch/elasticsearch.yml
-        target: /usr/share/elasticsearch/config/elasticsearch.yml
-        read_only: true
-      - type: volume
-        source: elasticsearch
-        target: /usr/share/elasticsearch/data
+      - elasticsearch:/usr/share/elasticsearch/data
     ports:
       - "9200:9200"
       - "9300:9300"
@@ -40,9 +34,7 @@ services:
     ports:
       - "3306:3306"
     volumes:
-      - type: volume
-        source: mysql
-        target: /var/lib/mysql
+      - mysql:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: "password"
       MYSQL_DATABASE: "attendance_db"
@@ -55,11 +47,6 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.empms-attendance.rule=Host(`ot-microservices.opstree.com`) && PathPrefix(`/attendance/`)"
-    volumes:
-      - type: bind
-        source: attendance/config.yaml
-        target: /app/config.yaml
-        read_only: true
     environment:
       CONFIG_FILE: "/app/config.yaml"
 #      ELASTIC_APM_SERVICE_NAME: "attendance"
@@ -94,11 +81,6 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.empms-employee.rule=Host(`ot-microservices.opstree.com`) && PathPrefix(`/employee/`)"
-    volumes:
-#     - type: bind
-#        source: employee/config.yaml
-#        target: /app/config.yaml
-#        read_only: true
     environment:
       CONFIG_FILE: "/app/config.yaml"
 #      ELASTIC_APM_SERVICE_NAME: "employee"
