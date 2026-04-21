@@ -89,8 +89,6 @@ services:
       - "traefik.enable=true"
       - "traefik.http.routers.employee.rule=PathPrefix(`/employee`)"
       - "traefik.http.services.employee.loadbalancer.server.port=8083"
-      - "traefik.http.middlewares.employee-addprefix.addprefix.prefix=/employee"
-      - "traefik.http.routers.employee.middlewares=employee-addprefix"
     environment:
       CONFIG_FILE: "/app/config.yaml"
 #      ELASTIC_APM_SERVICE_NAME: "employee"
