@@ -4,3 +4,4 @@ elastic-apm[flask]
 flask
 cryptography
 gunicorn
+sh
