@@ -48,9 +48,7 @@ services:
       - "8082:8081"  
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.attendance.rule=PathPrefix(`/attendance`) || PathPrefix(`/api`)"
-      - "traefik.http.middlewares.attendance-strip.stripprefix.prefixes=/attendance,/api"
-      - "traefik.http.routers.attendance.middlewares=attendance-strip"
+      - "traefik.http.routers.attendance.rule=PathPrefix(`/attendance`)"
       - "traefik.http.services.attendance.loadbalancer.server.port=8081"
     environment:
       CONFIG_FILE: "/app/config.yaml"
