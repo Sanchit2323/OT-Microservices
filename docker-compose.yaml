@@ -50,8 +50,6 @@ services:
       - "traefik.http.middlewares.attendance-strip.stripprefix.prefixes=/attendance,/api"
       - "traefik.http.routers.attendance.middlewares=attendance-strip"
       - "traefik.http.services.attendance.loadbalancer.server.port=8081"
-    volumes:
-    - /var/jenkins_home/workspace/microservice-pipeline/attendance/config.yaml:/app/config.yaml  
     environment:
       CONFIG_FILE: "/app/config.yaml"
 #      ELASTIC_APM_SERVICE_NAME: "attendance"
