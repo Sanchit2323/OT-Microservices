@@ -47,6 +47,8 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.attendance.rule=PathPrefix(`/attendance`)"
+      - "traefik.http.middlewares.attendance-strip.stripprefix.prefixes=/attendance"
+      - "traefik.http.routers.attendance.middlewares=attendance-strip"
     environment:
       CONFIG_FILE: "/app/config.yaml"
 #      ELASTIC_APM_SERVICE_NAME: "attendance"
@@ -81,6 +83,8 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.employee.rule=PathPrefix(`/employee`)"
+      - "traefik.http.middlewares.employee-strip.stripprefix.prefixes=/employee"
+      - "traefik.http.routers.employee.middlewares=employee-strip"
     environment:
       CONFIG_FILE: "/app/config.yaml"
 #      ELASTIC_APM_SERVICE_NAME: "employee"
