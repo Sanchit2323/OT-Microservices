@@ -11,7 +11,7 @@ RUN sed -i 's/deb.debian.org/archive.debian.org/g' /etc/apt/sources.list && \
     apt-get update -y && \
     apt-get install git -y
 
-RUN npm install 
+RUN npm install --legacy-peer-deps --fetch-timeout=600000
 
 RUN npm run build
 
