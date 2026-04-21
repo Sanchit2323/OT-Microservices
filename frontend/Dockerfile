@@ -6,7 +6,9 @@ COPY . /app
 
 WORKDIR /app/
 
-RUN apt-get update -y && \
+RUN sed -i 's/deb.debian.org/archive.debian.org/g' /etc/apt/sources.list && \
+    sed -i 's/security.debian.org/archive.debian.org/g' /etc/apt/sources.list && \
+    apt-get update -y && \
     apt-get install git -y
 
 RUN npm install 
