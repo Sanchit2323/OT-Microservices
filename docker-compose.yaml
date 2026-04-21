@@ -49,6 +49,8 @@ services:
       - "traefik.http.routers.attendance.rule=PathPrefix(`/attendance`)"
       - "traefik.http.middlewares.attendance-strip.stripprefix.prefixes=/attendance"
       - "traefik.http.routers.attendance.middlewares=attendance-strip"
+    volumes:
+    - ./attendance/config.yaml:/app/config.yaml  
     environment:
       CONFIG_FILE: "/app/config.yaml"
 #      ELASTIC_APM_SERVICE_NAME: "attendance"
