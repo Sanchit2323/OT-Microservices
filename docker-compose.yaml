@@ -7,7 +7,7 @@ services:
       context: elasticsearch/
     volumes:
       - type: bind
-        source: ./elasticsearch/elasticsearch.yml
+        source: /var/jenkins_home/workspace/microservice-pipeline/elasticsearch/elasticsearch.yml
         target: /usr/share/elasticsearch/config/elasticsearch.yml
         read_only: true
       - type: volume
@@ -57,7 +57,7 @@ services:
       - "traefik.http.routers.empms-attendance.rule=Host(`ot-microservices.opstree.com`) && PathPrefix(`/attendance/`)"
     volumes:
       - type: bind
-        source: ./attendance/config.yaml
+        source: /var/jenkins_home/workspace/microservice-pipeline/attendance/config.yaml
         target: /app/config.yaml
         read_only: true
     environment:
@@ -96,7 +96,7 @@ services:
       - "traefik.http.routers.empms-employee.rule=Host(`ot-microservices.opstree.com`) && PathPrefix(`/employee/`)"
     volumes:
       - type: bind
-        source: ./employee/config.yaml
+        source: /var/jenkins_home/workspace/microservice-pipeline/employee/config.yaml
         target: /app/config.yaml
         read_only: true
     environment:
