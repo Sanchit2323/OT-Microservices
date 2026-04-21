@@ -1,4 +1,4 @@
-@Library('noc-lib@main') _
+@Library('noc-lib@master') _
 
 pipeline {
     agent any
