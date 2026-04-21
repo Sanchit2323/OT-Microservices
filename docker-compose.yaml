@@ -46,7 +46,7 @@ services:
       context: attendance/
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.empms-attendance.rule=Host(`ot-microservices.opstree.com`) && PathPrefix(`/attendance/`)"
+      - "traefik.http.routers.attendance.rule=PathPrefix(`/attendance`)"
     environment:
       CONFIG_FILE: "/app/config.yaml"
 #      ELASTIC_APM_SERVICE_NAME: "attendance"
@@ -62,7 +62,7 @@ services:
       context: salary/
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.empms-salary.rule=Host(`ot-microservices.opstree.com`) && PathPrefix(`/salary/`)"
+      - "traefik.http.routers.salary.rule=PathPrefix(`/salary`)"
     environment:
 #      ELASTIC_APM_SERVICE_NAME: "salary"
 #      ELASTIC_APM_SERVER_URL: "http://apm-server:8200"
@@ -96,7 +96,7 @@ services:
       context: frontend/
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.empms-frontend.rule=Host(`ot-microservices.opstree.com`) && PathPrefix(`/`)"
+      - "traefik.http.routers.frontend.rule=PathPrefix(`/`)"
       - "traefik.http.services.empms-frontend.loadbalancer.server.port=3000"
     networks:
       - ot-microservices
@@ -110,7 +110,7 @@ services:
       - "--providers.docker.exposedbydefault=false"
     ports:
       - 80:80
-      - 8081:8080
+      - 8081:8080traefik.http.routers.empms-frontend.rule=Host(`ot-microservices.opstree.com`) && PathPrefix(`/`)
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     depends_on:
