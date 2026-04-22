@@ -63,9 +63,12 @@ services:
   empms-salary:
     build:
       context: salary/
+    ports:
+      - "8084:8080"  
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.salary.rule=PathPrefix(`/salary`)"
+      - "traefik.http.services.salary.loadbalancer.server.port=8080"
     environment:
 #      ELASTIC_APM_SERVICE_NAME: "salary"
 #      ELASTIC_APM_SERVER_URL: "http://apm-server:8200"
