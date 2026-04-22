@@ -131,8 +131,10 @@ func fetchALLEmployeeData(c *gin.Context) {
 		employeeInfo = append(employeeInfo, *response)
 	}
 	logrus.Infof("Successfully fetched all employee's information")
-	c.JSON(http.StatusOK, employeeInfo)
-}
+	c.JSON(http.StatusOK, gin.H{
+        "version": "v2",
+        "data": employeeInfo,
+    })
 
 func fetchEmployeeRoles(c *gin.Context) {
 	conf, err := config.ParseFile(configFile)
