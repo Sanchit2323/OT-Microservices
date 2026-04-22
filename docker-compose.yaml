@@ -143,7 +143,8 @@ services:
       - empms-frontend
       - empms-attendance
       - empms-salary
-      - empms-employee
+      - empms-employee-blue
+      - empms-employee-green
     networks:
       - ot-microservices
 
