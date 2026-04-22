@@ -135,6 +135,7 @@ func fetchALLEmployeeData(c *gin.Context) {
         "version": "v2",
         "data": employeeInfo,
     })
+}	
 
 func fetchEmployeeRoles(c *gin.Context) {
 	conf, err := config.ParseFile(configFile)
