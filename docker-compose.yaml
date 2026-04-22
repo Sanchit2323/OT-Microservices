@@ -81,19 +81,36 @@ services:
     depends_on:
       - empms-es
 
-  empms-employee:
+  empms-employee-blue:
     build:
       context: employee/
+    container_name: empms-employee-blue
     ports:
-      - "8083:8083"  
+      - "8083:8083"
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.employee.rule=PathPrefix(`/employee`)"
       - "traefik.http.services.employee.loadbalancer.server.port=8083"
     environment:
       CONFIG_FILE: "/app/config.yaml"
-#      ELASTIC_APM_SERVICE_NAME: "employee"
-#      ELASTIC_APM_SERVER_URL: "http://apm-server:8200"
+      ELASTIC_APM_ENABLED: "false"
+    networks:
+      - ot-microservices
+    depends_on:
+      - empms-es
+
+  empms-employee-green:
+    build:
+      context: employee/
+    container_name: empms-employee-green
+    ports:
+      - "8085:8083"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.employee.rule=PathPrefix(`/employee`)"
+      - "traefik.http.services.employee.loadbalancer.server.port=8083"
+    environment:
+      CONFIG_FILE: "/app/config.yaml"
       ELASTIC_APM_ENABLED: "false"
     networks:
       - ot-microservices
