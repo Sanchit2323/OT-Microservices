@@ -90,7 +90,7 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.employee.rule=PathPrefix(`/employee`)"
-      - "traefik.http.services.employee.loadbalancer.server.port=8083"
+      - "traefik.http.services.employee-blue.loadbalancer.server.port=8083"
     environment:
       CONFIG_FILE: "/app/config.yaml"
       ELASTIC_APM_ENABLED: "false"
@@ -108,7 +108,7 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.employee.rule=PathPrefix(`/employee`)"
-      - "traefik.http.services.employee.loadbalancer.server.port=8083"
+      - "traefik.http.services.employee-green.loadbalancer.server.port=8083"
     environment:
       CONFIG_FILE: "/app/config.yaml"
       ELASTIC_APM_ENABLED: "false"
